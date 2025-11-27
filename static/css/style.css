@@ -54,9 +54,10 @@ h1 {
     margin-bottom: 15px; /* ボタンとの間隔 */
 }
 
-video { width: 100%; display: block; }
+video { 
+    width: 100%; display: block; 
+}
 
-/* --- ▼▼▼ 横並びボタン用スタイル ▼▼▼ --- */
 .button-row {
     display: flex;
     width: 100%;
@@ -102,7 +103,9 @@ button:disabled { background-color: #555 !important; color: #888 !important; cur
 }
 
 /* ファイル入力を隠す */
-input[type="file"] { display: none; }
+input[type="file"] { 
+    display: none; 
+}
 
 /* --- テキスト入力エリア --- */
 .text-input-container {
@@ -127,7 +130,9 @@ input[type="file"] { display: none; }
     box-shadow: 0 0 10px rgba(255, 0, 127, 0.3);
 }
 
-canvas { display: none; }
+canvas { 
+    display: none; 
+}
 
 /* 結果エリア */
 #result-area {
@@ -216,3 +221,4 @@ canvas { display: none; }
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
