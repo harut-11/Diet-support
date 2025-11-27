@@ -9,7 +9,23 @@ body {
     padding: 20px;
 }
 
-h1 { margin-bottom: 20px; font-size: 1.5rem; }
+h1 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    
+   
+    display: flex;
+    align-items: center;     
+    justify-content: center; 
+    gap: 10px;              
+}
+
+
+.title-icon {
+    height: 1.8em; 
+    width: auto;
+    object-fit: contain;
+}
 
 /* 入力セクション共通 */
 .input-section {
