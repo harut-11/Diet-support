@@ -16,6 +16,17 @@
     <div class="input-section">
         <div class="camera-container">
             <video id="video" autoplay playsinline></video>
+
+            <div id="preview-area" style="display: none;">
+        <img id="preview-img" style="width: 100%; display: block;">
+        <div class="preview-controls">
+            <p>この画像で分析しますか？</p>
+            <div class="preview-buttons">
+                <button id="preview-ok-btn" class="btn-ok">✅ 分析する</button>
+                <button id="preview-cancel-btn" class="btn-cancel">❌ やめる</button>
+            </div>
+        </div>
+    </div>
         </div>
 
         <div class="button-row">
