@@ -61,12 +61,12 @@ video {
 .button-row {
     display: flex;
     width: 100%;
-    gap: 10px; /* ボタン同士の隙間 */
+    gap: 10px; 
 }
 
 /* 共通ボタンデザイン */
 button, .custom-file-upload {
-    padding: 12px 10px; /* 横幅が狭くなるのでpaddingを調整 */
+    padding: 12px 10px; 
     font-size: 0.95rem;
     font-weight: bold;
     border: none;
@@ -83,7 +83,7 @@ button, .custom-file-upload {
 /* 横並びの中で均等幅にする */
 .button-row button, 
 .button-row .custom-file-upload {
-    flex: 1; /* 1:1の幅にする */
+    flex: 1; 
 }
 
 button:active, .custom-file-upload:active { transform: scale(0.95); }
@@ -133,7 +133,50 @@ input[type="file"] {
 canvas { 
     display: none; 
 }
+#preview-area {
+    width: 100%;
+    background: #000;
+    text-align: center;
+}
 
+#preview-img {
+    width: 100%;
+   
+    object-fit: contain; 
+    display: block;
+    background-color: #000;
+}
+
+.preview-controls {
+    padding: 15px;
+    background: #222;
+    border-top: 1px solid #444;
+}
+
+.preview-controls p {
+    margin: 0 0 10px 0;
+    color: #fff;
+    font-weight: bold;
+}
+
+.preview-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+
+.btn-ok {
+    background-color: #00d2ff;
+    color: #000;
+    flex: 1;
+}
+
+.btn-cancel {
+    background-color: #ff4444;
+    color: white;
+    flex: 1;
+}
 /* 結果エリア */
 #result-area {
     width: 100%;
@@ -179,9 +222,21 @@ canvas {
     background: #444;
 }
 
-.tag-body { background-color: rgba(255, 99, 132, 0.15); color: #ff6384; border-color: #ff6384; }
-.tag-energy { background-color: rgba(255, 206, 86, 0.15); color: #ffce56; border-color: #ffce56; }
-.tag-condition { background-color: rgba(75, 192, 192, 0.15); color: #4bc0c0; border-color: #4bc0c0; }
+.tag-body { 
+    background-color: rgba(255, 99, 132, 0.15); 
+    color: #ff6384; 
+    border-color: #ff6384; 
+}
+.tag-energy { 
+    background-color: rgba(255, 206, 86, 0.15); 
+    color: #ffce56; 
+    border-color: #ffce56; 
+}
+.tag-condition { 
+    background-color: rgba(75, 192, 192, 0.15); 
+    color: #4bc0c0; 
+    border-color: #4bc0c0; 
+}
 
 #food-advice {
     background: #333;
@@ -212,10 +267,22 @@ canvas {
     cursor: pointer;
     transition: background 0.2s, transform 0.1s;
 }
+button:disabled, .custom-file-upload.disabled {
+    background-color: #555 !important;
+    color: #888 !important;
+    cursor: not-allowed; 
+    pointer-events: none; 
+}
 
-.recipe-card:hover { background: #444; transform: translateX(5px); }
-.recipe-card h4 { margin: 0 0 5px 0; color: #fff; font-size: 1.1rem; }
-.recipe-card p { margin: 0; color: #ccc; font-size: 0.85rem; }
+.recipe-card:hover { 
+    background: #444; transform: translateX(5px); 
+}
+.recipe-card h4 { 
+    margin: 0 0 5px 0; color: #fff; font-size: 1.1rem; 
+}
+.recipe-card p { 
+    margin: 0; color: #ccc; font-size: 0.85rem; 
+}
 
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
