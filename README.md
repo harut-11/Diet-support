@@ -67,7 +67,7 @@ GEMINI_API_KEY=あなたのGemini APIキー
    ```
    ERROR: Could not install packages due to an OSError: [Errno 28] No space left on device
    ```
-   ↓以下のコマンドを入力し再インストールしてください。
+   ↓例として、以下のコマンドを入力し再インストールしてください。
    ```
    python -m pip cache purge
    ```
