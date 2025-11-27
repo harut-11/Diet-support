@@ -1,5 +1,5 @@
 # AI 栄養＆レシピ提案アプリ
-<img width="1236" height="1024" alt="image" src="https://github.com/harut-11/Diet-support/blob/main/static/images/rezipi.png" />
+<img width="1536" height="824" alt="image" src="https://github.com/harut-11/Diet-support/blob/main/static/images/rezipi.png" />
 
 ## 📢 「食事管理なんて、自分には関係ない」と思っていませんか？
 
