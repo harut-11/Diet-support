@@ -63,9 +63,13 @@ GEMINI_API_KEY=あなたのGemini APIキー
    ```bash
    pip install flask google-generativeai python-dotenv pillow
    ```
-   ↓のようなエラーが出た場合は、パソコンの容量を空けて再インストールしてください。
+   ↓のようなエラーが出た場合は、パソコンの容量を空けてください。
    ```
    ERROR: Could not install packages due to an OSError: [Errno 28] No space left on device
+   ```
+   ↓以下のコマンドを入力し再インストールしてください。
+   ```
+   python -m pip cache purge
    ```
    
    
