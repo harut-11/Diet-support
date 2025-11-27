@@ -8,7 +8,10 @@
 </head>
 <body>
 
-    <h1>AI 栄養＆レシピ提案</h1>
+    <h1>
+    <img src="{{ url_for('static', filename='images/resipi.png') }}" class="title-icon" alt="icon">
+    AI 栄養＆レシピ提案
+    </h1>
 
     <div class="input-section">
         <div class="camera-container">
@@ -19,7 +22,7 @@
             <button id="scan-btn">📷 撮影して分析</button>
             
             <label for="file-input" class="custom-file-upload">
-                📁 画像を選択
+                📁 画像を選択して分析
                 <input type="file" id="file-input" accept="image/*">
             </label>
         </div>
@@ -52,5 +55,4 @@
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
-
 </html>
