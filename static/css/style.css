@@ -1,0 +1,202 @@
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #0a0a0a5e;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 { margin-bottom: 20px; font-size: 1.5rem; }
+
+/* 入力セクション共通 */
+.input-section {
+    width: 100%;
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.separator {
+    color: #000000ff;
+    font-size: 0.9rem;
+    margin: 10px 0;
+}
+
+/* カメラ表示エリア */
+.camera-container {
+    position: relative;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    background: #000;
+    margin-bottom: 15px; /* ボタンとの間隔 */
+}
+
+video { width: 100%; display: block; }
+
+/* --- ▼▼▼ 横並びボタン用スタイル ▼▼▼ --- */
+.button-row {
+    display: flex;
+    width: 100%;
+    gap: 10px; /* ボタン同士の隙間 */
+}
+
+/* 共通ボタンデザイン */
+button, .custom-file-upload {
+    padding: 12px 10px; /* 横幅が狭くなるのでpaddingを調整 */
+    font-size: 0.95rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.1s;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+}
+
+/* 横並びの中で均等幅にする */
+.button-row button, 
+.button-row .custom-file-upload {
+    flex: 1; /* 1:1の幅にする */
+}
+
+button:active, .custom-file-upload:active { transform: scale(0.95); }
+button:disabled { background-color: #555 !important; color: #888 !important; cursor: wait; }
+
+/* 各ボタンの色 */
+#scan-btn {
+    background-color: #00d2ff;
+    color: #000;
+    box-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
+}
+
+.custom-file-upload {
+    background-color: #444;
+    color: #fff;
+    border: 1px solid #666;
+}
+
+/* ファイル入力を隠す */
+input[type="file"] { display: none; }
+
+/* --- テキスト入力エリア --- */
+.text-input-container {
+    flex-direction: row; /* 横並び */
+    gap: 10px;
+}
+
+#text-input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 50px;
+    border: 1px solid #444;
+    background: #222;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+}
+
+#text-btn {
+    background-color: #ff007f;
+    color: white;
+    box-shadow: 0 0 10px rgba(255, 0, 127, 0.3);
+}
+
+canvas { display: none; }
+
+/* 結果エリア */
+#result-area {
+    width: 100%;
+    max-width: 640px;
+    margin-top: 30px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+#food-name {
+    text-align: center;
+    color: #00d2ff;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+#nutrient-container {
+    background: #2a2a2a;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#nutrient-container h3 {
+    font-size: 1rem;
+    color: #aaa;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+#nutrient-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+}
+
+.nutrient-tag {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: #444;
+}
+
+.tag-body { background-color: rgba(255, 99, 132, 0.15); color: #ff6384; border-color: #ff6384; }
+.tag-energy { background-color: rgba(255, 206, 86, 0.15); color: #ffce56; border-color: #ffce56; }
+.tag-condition { background-color: rgba(75, 192, 192, 0.15); color: #4bc0c0; border-color: #4bc0c0; }
+
+#food-advice {
+    background: #333;
+    padding: 15px;
+    border-radius: 8px;
+    line-height: 1.6;
+    border-left: 5px solid #00d2ff;
+    margin-bottom: 25px;
+}
+
+#recipe-container h3 {
+    text-align: center;
+    color: #ffca28;
+    margin-bottom: 15px;
+}
+
+#recipe-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.recipe-card {
+    background: #333;
+    border-radius: 10px;
+    padding: 15px;
+    border-left: 5px solid #ff5722;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.recipe-card:hover { background: #444; transform: translateX(5px); }
+.recipe-card h4 { margin: 0 0 5px 0; color: #fff; font-size: 1.1rem; }
+.recipe-card p { margin: 0; color: #ccc; font-size: 0.85rem; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 栄養＆レシピ提案</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <h1>🥗 AI 栄養＆レシピ提案</h1>
+
+    <div class="input-section">
+        <div class="camera-container">
+            <video id="video" autoplay playsinline></video>
+        </div>
+
+        <div class="button-row">
+            <button id="scan-btn">📷 撮影して分析</button>
+            
+            <label for="file-input" class="custom-file-upload">
+                📁 画像を選択
+                <input type="file" id="file-input" accept="image/*">
+            </label>
+        </div>
+        </div>
+
+    <p class="separator">または</p>
+
+    <div class="input-section text-input-container">
+        <input type="text" id="text-input" placeholder="例: リンゴ、肉じゃが">
+        <button id="text-btn">🔍 名前で検索</button>
+    </div>
+
+    <canvas id="canvas"></canvas>
+
+    <div id="result-area" style="display:none;">
+        <h2 id="food-name"></h2>
+        
+        <div id="nutrient-container">
+            <h3>含まれる主な栄養素</h3>
+            <div id="nutrient-list"></div>
+        </div>
+
+        <p id="food-advice"></p>
+
+        <div id="recipe-container">
+            <h3>👩‍🍳 おすすめレシピ / 付け合わせ</h3>
+            <div id="recipe-list"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
