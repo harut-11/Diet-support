@@ -29,7 +29,7 @@ def index():
 def analyze():
     try:
         req_data = request.json
-        input_type = req_data.get('type') # 'image' or 'text'
+        input_type = req_data.get('type') 
         input_data = req_data.get('data')
 
         # --- AIへの指示（共通プロンプト） ---
