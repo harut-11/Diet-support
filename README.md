@@ -72,7 +72,7 @@ GEMINI_API_KEY=あなたのGemini APIキー
 4. **必要なパッケージをインストール**
 
    ```bash
-   pip install flask google-generativeai python-dotenv pillow
+   pip install flask google-generativeai python-dotenv pillow pywebview
    ```
    ↓のようなエラーが出た場合は、パソコンの容量を空けてください。
    ```
