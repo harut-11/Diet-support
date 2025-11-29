@@ -314,14 +314,27 @@ canvas {
 
 /* --- レシピカードのデザイン --- */
 .recipe-card {
+    position: relative; /* 矢印の配置基準にする */
     background: #333;
     border-radius: 20px;
     padding: 40px;
+    padding-right: 70px; 
     border-left: 10px solid #ff5722;
     cursor: pointer;
     transition: background 0.2s, transform 0.1s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
-
+.recipe-card::after {
+    content: '❯';       /* 矢印の記号 */
+    position: absolute;
+    right: 25px;        /* 右端からの距離 */
+    top: 50%;           /* 上下の真ん中 */
+    transform: translateY(-50%);
+    color: #888;        
+    font-size: 3.0rem;  /* 矢印の大きさ */
+    font-weight: bold;
+    transition: color 0.2s, right 0.2s;
+}
 .recipe-card:hover { 
     background: #444; 
     transform: translateX(10px); 
