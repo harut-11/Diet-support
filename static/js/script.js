@@ -9,11 +9,12 @@ const recipeList = document.getElementById('recipe-list');
 // 入力要素
 const scanBtn = document.getElementById('scan-btn');
 const fileInput = document.getElementById('file-input');
-
 const fileInputLabel = document.querySelector('.custom-file-upload');
-
 const textInput = document.getElementById('text-input');
 const textBtn = document.getElementById('text-btn');
+
+// アレルギー入力要素
+const allergyInput = document.getElementById('allergy-input');
 
 const previewArea = document.getElementById('preview-area');
 const previewImg = document.getElementById('preview-img');
@@ -37,16 +38,15 @@ function prepareUI() {
     scanBtn.disabled = true;
     textBtn.disabled = true;
     
- 
     fileInput.disabled = true;
-    fileInputLabel.classList.add('disabled'); // 見た目をグレーアウト
+    fileInputLabel.classList.add('disabled'); 
 
     scanBtn.textContent = "AIが分析中...";
     textBtn.textContent = "分析中...";
 
     // プレビュー画面のボタン制御
     previewOkBtn.disabled = true;
-    previewOkBtn.textContent = "⏳ 分析中...";
+    previewOkBtn.textContent = "分析中...";
 }
 
 // --- UI復帰処理 (解析終了時) ---
@@ -54,20 +54,23 @@ function resetUI() {
     scanBtn.disabled = false;
     textBtn.disabled = false;
     
-    // 【追加】画像選択ボタンを復帰（解析が終わったら押せるようにする）
     fileInput.disabled = false;
     fileInputLabel.classList.remove('disabled');
 
-    scanBtn.textContent = "📷 撮影して分析";
-    textBtn.textContent = "🔍 名前で検索";
+    scanBtn.textContent = "撮影して分析";
+    textBtn.textContent = " 検索 ";
 
     previewOkBtn.disabled = false;
-    previewOkBtn.textContent = "✅ 分析する";
+    previewOkBtn.textContent = "分析する";
 }
 
 // --- 解析リクエスト送信 ---
 async function sendAnalyzeRequest(payload) {
     try {
+        // アレルギー情報をペイロードに追加
+        const allergyText = allergyInput.value.trim();
+        payload.allergies = allergyText;
+
         const response = await fetch('/analyze', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -83,6 +86,7 @@ async function sendAnalyzeRequest(payload) {
             foodName.textContent = `🍽️ ${data.name}`;
             foodAdvice.textContent = `💡 ${data.advice}`;
 
+            // 栄養素リスト
             if (data.nutrients && Array.isArray(data.nutrients)) {
                 data.nutrients.forEach(item => {
                     const span = document.createElement('span');
@@ -93,11 +97,29 @@ async function sendAnalyzeRequest(payload) {
                 });
             }
 
+            // レシピリスト（難易度表示対応）
             if (data.recipes && Array.isArray(data.recipes)) {
                 data.recipes.forEach(recipe => {
                     const div = document.createElement('div');
                     div.className = 'recipe-card';
-                    div.innerHTML = `<h4>${recipe.title}</h4><p>${recipe.desc}</p>`;
+                    
+                    // 難易度判定
+                    let difficultyClass = 'diff-unknown';
+                    let difficultyText = recipe.difficulty || '';
+
+                    if (difficultyText.includes('初級')) difficultyClass = 'diff-easy';
+                    else if (difficultyText.includes('中級')) difficultyClass = 'diff-medium';
+                    else if (difficultyText.includes('上級')) difficultyClass = 'diff-hard';
+
+                    // HTML構築
+                    div.innerHTML = `
+                        <div class="recipe-header">
+                            <h4>${recipe.title}</h4>
+                            <span class="difficulty-badge ${difficultyClass}">${difficultyText}</span>
+                        </div>
+                        <p>${recipe.desc}</p>
+                    `;
+                    
                     div.onclick = () => {
                         const query = encodeURIComponent(`${recipe.title} レシピ`);
                         window.open(`https://www.google.com/search?q=${query}`, '_blank');
@@ -126,7 +148,7 @@ scanBtn.addEventListener('click', async () => {
     await sendAnalyzeRequest({ type: 'image', data: imageData });
 });
 
-// ファイルアップロード (ファイルが選択されたとき)
+// ファイルアップロード
 fileInput.addEventListener('change', (e) => {
     if (e.target.files && e.target.files[0]) {
         const reader = new FileReader();
@@ -146,7 +168,6 @@ fileInput.addEventListener('change', (e) => {
             previewImg.src = currentUploadImage;
             
             previewArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
             
             fileInput.disabled = true;
             fileInputLabel.classList.add('disabled');
@@ -156,28 +177,23 @@ fileInput.addEventListener('change', (e) => {
     }
 });
 
-// プレビュー画面の「解析する」ボタン
+// プレビューの「解析する」
 previewOkBtn.addEventListener('click', async () => {
     if (!currentUploadImage) return;
 
     prepareUI();
     await sendAnalyzeRequest({ type: 'image', data: currentUploadImage });
-    
-    // 解析後にプレビューを閉じる
     closePreview();
 });
 
-// やめるボタンが押されたとき
+// プレビューの「やめる」
 previewCancelBtn.addEventListener('click', () => {
     closePreview();
-    // closePreview内でボタン復帰処理
 });
 
-// プレビューを閉じてカメラに戻す関数
 function closePreview() {
     previewArea.style.display = 'none';
     video.style.display = 'block';
-
     
     fileInput.disabled = false;
     fileInputLabel.classList.remove('disabled');
