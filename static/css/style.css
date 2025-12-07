@@ -1,59 +1,87 @@
+/* ベーススタイル */
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
     background-color: #0a0a0a5e;
     color: white;
+    margin: 0;
+    padding: 15px; 
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0;
-    padding: 20px;
 }
 
-h1 { margin-bottom: 20px; font-size: 1.5rem; }
+/* ヘッダー */
+.site-header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px; 
+}
 
-/* 入力セクション共通 */
+h1 {
+    font-size: 1.8rem; 
+    display: flex;
+    align-items: center;     
+    gap: 10px; 
+    margin: 0;
+}
+
+.title-icon {
+    height: 1.4em; 
+    width: auto;
+    object-fit: contain;
+}
+
+/* メインコンテンツラッパー */
+main {
+    width: 100%;
+    max-width: 450px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* セクション共通 */
 .input-section {
     width: 100%;
-    max-width: 640px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 10px;
-}
-
-.separator {
-    color: #000000ff;
-    font-size: 0.9rem;
-    margin: 10px 0;
+    margin-bottom: 15px; 
 }
 
 /* カメラ表示エリア */
 .camera-container {
     position: relative;
     width: 100%;
-    border-radius: 12px;
+    border-radius: 8px; 
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     background: #000;
-    margin-bottom: 15px; /* ボタンとの間隔 */
+    margin: 0 0 15px 0; 
+    padding: 0;
 }
 
-video { width: 100%; display: block; }
+video { 
+    width: 100%; 
+    display: block; 
+}
 
-/* --- ▼▼▼ 横並びボタン用スタイル ▼▼▼ --- */
+/* ボタン行 */
 .button-row {
     display: flex;
     width: 100%;
-    gap: 10px; /* ボタン同士の隙間 */
+    gap: 10px; 
 }
 
 /* 共通ボタンデザイン */
 button, .custom-file-upload {
-    padding: 12px 10px; /* 横幅が狭くなるのでpaddingを調整 */
-    font-size: 0.95rem;
+    padding: 8px 16px; 
+    font-size: 0.9rem; 
     font-weight: bold;
     border: none;
-    border-radius: 50px;
+    border-radius: 30px;
     cursor: pointer;
     transition: transform 0.1s;
     text-align: center;
@@ -63,81 +91,185 @@ button, .custom-file-upload {
     white-space: nowrap;
 }
 
-/* 横並びの中で均等幅にする */
 .button-row button, 
 .button-row .custom-file-upload {
-    flex: 1; /* 1:1の幅にする */
+    flex: 1; 
 }
 
-button:active, .custom-file-upload:active { transform: scale(0.95); }
-button:disabled { background-color: #555 !important; color: #888 !important; cursor: wait; }
+button:active, .custom-file-upload:active { 
+    transform: scale(0.98); 
+}
+button:disabled { 
+    background-color: #555 !important; 
+    color: #888 !important; 
+    cursor: wait; 
+}
 
-/* 各ボタンの色 */
+/* 色設定 */
 #scan-btn {
-    background-color: #00d2ff;
+    background-color: #a0a8ff;
     color: #000;
-    box-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
+    box-shadow: 0 0 8px rgba(0, 210, 255, 0.4);
 }
 
 .custom-file-upload {
-    background-color: #444;
-    color: #fff;
-    border: 1px solid #666;
+    background-color: #a0a8ff;
+    color: #000000;
 }
 
-/* ファイル入力を隠す */
-input[type="file"] { display: none; }
+/* 区切り線 */
+.separator {
+    display: flex;
+    align-items: center;
+    color: #000000;
+    font-size: 0.9rem; 
+    margin: 15px 0; 
+    width: 100%;
+}
 
-/* --- テキスト入力エリア --- */
+.separator::before,
+.separator::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #444; 
+}
+
+.separator::before { 
+    margin-right: 10px; 
+}
+.separator::after { 
+    margin-left: 10px; 
+}
+
+input[type="file"] { 
+    display: none; 
+}
+
+/* アレルギー入力 */
+.allergy-section {
+    margin-bottom: 20px; 
+}
+
+.allergy-section label {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.0rem; 
+    margin-bottom: 6px;
+    align-self: flex-start;
+}
+
+#allergy-input {
+    width: 100%;
+    padding: 10px; 
+    border-radius: 30px;
+    border: 1px solid #648288;
+    background: #000000;
+    color: rgb(255, 255, 255);
+    font-size: 0.9rem; 
+    outline: none;
+    box-sizing: border-box;
+}
+
+/* テキスト入力フォーム */
 .text-input-container {
-    flex-direction: row; /* 横並び */
-    gap: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: row; 
+    gap: 10px; 
 }
 
 #text-input {
     flex: 1;
-    padding: 12px;
-    border-radius: 50px;
-    border: 1px solid #444;
-    background: #222;
-    color: white;
-    font-size: 1rem;
+    padding: 10px; 
+    border-radius: 30px;
+    border: 1px solid #648288;
+    background: #000000;
+    color: rgb(255, 255, 255);
+    font-size: 0.9rem; 
     outline: none;
 }
 
 #text-btn {
     background-color: #ff007f;
     color: white;
-    box-shadow: 0 0 10px rgba(255, 0, 127, 0.3);
+    box-shadow: 0 0 8px rgba(255, 0, 127, 0.3);
+    padding: 10px 20px; 
+    font-size: 0.9rem;
 }
 
-canvas { display: none; }
+canvas { 
+    display: none; 
+}
+
+/* プレビューエリア */
+#preview-area {
+    width: 100%;
+    background: #000;
+    text-align: center;
+}
+
+#preview-img {
+    width: 100%;
+    object-fit: contain; 
+    display: block;
+    background-color: #000;
+}
+
+.preview-controls {
+    padding: 15px; 
+    background: #222;
+    border-top: 1px solid #444;
+}
+
+.preview-controls p {
+    margin: 0 0 10px 0;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.0rem; 
+}
+
+.preview-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.btn-ok {
+    background-color: #00d2ff;
+    color: #000;
+    flex: 1;
+}
+
+.btn-cancel {
+    background-color: #ff4444;
+    color: white;
+    flex: 1;
+}
 
 /* 結果エリア */
 #result-area {
     width: 100%;
-    max-width: 640px;
-    margin-top: 30px;
+    margin-top: 20px; 
     animation: fadeIn 0.5s ease-in-out;
 }
 
 #food-name {
     text-align: center;
     color: #00d2ff;
-    margin-bottom: 20px;
-    font-size: 1.8rem;
+    margin-bottom: 15px;
+    font-size: 1.8rem; 
 }
 
 #nutrient-container {
     background: #2a2a2a;
-    padding: 15px;
+    padding: 15px; 
     border-radius: 12px;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 #nutrient-container h3 {
-    font-size: 1rem;
+    font-size: 1.1rem; 
     color: #aaa;
     margin-top: 0;
     margin-bottom: 10px;
@@ -147,56 +279,150 @@ canvas { display: none; }
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 8px;
+    gap: 8px; /* 10px -> 8px */
 }
 
 .nutrient-tag {
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 0.9rem;
+    padding: 6px 12px; 
+    border-radius: 15px;
+    font-size: 0.85rem; 
     border: 1px solid rgba(255,255,255,0.1);
     background: #444;
 }
 
-.tag-body { background-color: rgba(255, 99, 132, 0.15); color: #ff6384; border-color: #ff6384; }
-.tag-energy { background-color: rgba(255, 206, 86, 0.15); color: #ffce56; border-color: #ffce56; }
-.tag-condition { background-color: rgba(75, 192, 192, 0.15); color: #4bc0c0; border-color: #4bc0c0; }
+/* タグの色設定 */
+.tag-body { 
+    background-color: rgba(255, 99, 132, 0.15); 
+    color: #ff6384; 
+    border-color: #ff6384; 
+}
+.tag-energy { 
+    background-color: rgba(255, 206, 86, 0.15); 
+    color: #ffce56; 
+    border-color: #ffce56; 
+}
+.tag-condition { 
+    background-color: rgba(75, 192, 192, 0.15); 
+    color: #4bc0c0; 
+    border-color: #4bc0c0; 
+}
 
-#food-advice {
+.advice-section #food-advice {
     background: #333;
-    padding: 15px;
+    padding: 15px; 
     border-radius: 8px;
     line-height: 1.6;
-    border-left: 5px solid #00d2ff;
-    margin-bottom: 25px;
+    border-left: 4px solid #00d2ff;
+    margin: 0 0 20px 0;
+    font-size: 0.9rem; 
 }
 
 #recipe-container h3 {
     text-align: center;
     color: #ffca28;
     margin-bottom: 15px;
+    font-size: 1.3rem; 
 }
 
 #recipe-list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 12px; 
 }
 
+/* レシピカード */
 .recipe-card {
+    position: relative;
     background: #333;
-    border-radius: 10px;
-    padding: 15px;
-    border-left: 5px solid #ff5722;
+    border-radius: 8px; 
+    padding: 15px; 
+    padding-right: 35px; 
+    border-left: 4px solid #ff5722;
     cursor: pointer;
     transition: background 0.2s, transform 0.1s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+.recipe-card::after {
+    content: '❯';
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;        
+    font-size: 1.2rem; 
+    font-weight: bold;
+    transition: color 0.2s, right 0.2s;
+}
+.recipe-card:hover { 
+    background: #444; 
+    transform: translateX(4px); 
 }
 
-.recipe-card:hover { background: #444; transform: translateX(5px); }
-.recipe-card h4 { margin: 0 0 5px 0; color: #fff; font-size: 1.1rem; }
-.recipe-card p { margin: 0; color: #ccc; font-size: 0.85rem; }
+/* レシピヘッダー */
+.recipe-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px; 
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.recipe-card h4 { 
+    margin: 0; 
+    color: #fff; 
+    font-size: 1.1rem; 
+    font-weight: bold;
+}
+
+.recipe-card p { 
+    margin: 0; 
+    color: #ccc; 
+    font-size: 0.85rem; 
+    width: 100%;
+}
+
+/* 難易度バッジ */
+.difficulty-badge {
+    font-size: 0.75rem; 
+    padding: 4px 10px; 
+    border-radius: 12px;
+    color: white;
+    font-weight: bold;
+    white-space: nowrap;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.diff-easy { 
+    background-color: #00e676; 
+    color: #004d40; 
+}
+.diff-medium { 
+    background-color: #ffca28; 
+    color: #3e2723; 
+}
+.diff-hard { 
+    background-color: #ff5252; 
+    color: #fff; 
+}
+.diff-unknown { 
+    background-color: #9e9e9e; 
+}
+
+button:disabled, .custom-file-upload.disabled {
+    background-color: #555 !important;
+    color: #888 !important;
+    cursor: not-allowed; 
+    pointer-events: none; 
+}
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { 
+        opacity: 0; 
+        transform: translateY(10px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
 }
