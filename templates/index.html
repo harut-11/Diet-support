@@ -3,71 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AIを活用して食材や料理の画像から栄養素を分析し、最適なレシピを提案する健康管理ツールです。">
     <title>AI 栄養＆レシピ提案</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
 
-    <h1>
-    <img src="{{ url_for('static', filename='images/resipi.png') }}" class="title-icon" alt="icon">
-    AI 栄養＆レシピ提案
-    </h1>
+    <header class="site-header">
+        <h1>
+            <img src="{{ url_for('static', filename='images/resipi.png') }}" class="title-icon" alt="アプリアイコン">
+            AI 栄養＆レシピ提案
+        </h1>
+    </header>
 
-    <div class="input-section">
-        <div class="camera-container">
-            <video id="video" autoplay playsinline></video>
+    <main>
+        <section class="input-section" aria-label="画像解析">
+            <figure class="camera-container">
+                <video id="video" autoplay playsinline></video>
 
-            <div id="preview-area" style="display: none;">
-                <img id="preview-img" style="width: 100%; display: block;">
-                <div class="preview-controls">
-                    <p>この画像で分析しますか？</p>
-                    <div class="preview-buttons">
-                        <button id="preview-ok-btn" class="btn-ok">分析する</button>
-                        <button id="preview-cancel-btn" class="btn-cancel">やめる</button>
+                <div id="preview-area" style="display: none;">
+                    <img id="preview-img" alt="プレビュー画像">
+                    <div class="preview-controls">
+                        <p>この画像で分析しますか？</p>
+                        <div class="preview-buttons">
+                            <button id="preview-ok-btn" class="btn-ok">分析する</button>
+                            <button id="preview-cancel-btn" class="btn-cancel">やめる</button>
+                        </div>
                     </div>
                 </div>
+            </figure>
+
+            <div class="button-row">
+                <button id="scan-btn" type="button">撮影して分析</button>
+                
+                <label for="file-input" class="custom-file-upload">
+                    画像を選択して分析
+                    <input type="file" id="file-input" accept="image/*">
+                </label>
             </div>
-        </div>
+        </section>
 
-        <div class="button-row">
-            <button id="scan-btn">撮影して分析</button>
+        <p class="separator" role="separator">または</p>
+
+        <section class="input-section allergy-section" aria-label="アレルギー設定">
+            <label for="allergy-input">アレルギー・苦手なもの (除外する食材)</label>
+            <input type="text" id="allergy-input" placeholder="例: エビ、カニ、そば、ピーナッツ">
+        </section>
+
+        <section class="input-section" aria-label="キーワード検索">
+            <form class="text-input-container" onsubmit="return false;">
+                <input type="text" id="text-input" placeholder="例: リンゴ、肉じゃが" aria-label="料理名や食材名を入力">
+                <button id="text-btn" type="button">検 索</button>
+            </form>
+        </section>
+
+        <canvas id="canvas"></canvas>
+
+        <article id="result-area" aria-live="polite" style="display:none;">
+            <header>
+                <h2 id="food-name"></h2>
+            </header>
             
-            <label for="file-input" class="custom-file-upload">
-                画像を選択して分析
-                <input type="file" id="file-input" accept="image/*">
-            </label>
-        </div>
-    </div>
+            <section id="nutrient-container" aria-labelledby="nutrient-heading">
+                <h3 id="nutrient-heading">含まれる主な栄養素</h3>
+                <div id="nutrient-list"></div>
+            </section>
 
-    <p class="separator">または</p>
+            <section class="advice-section">
+                <p id="food-advice"></p>
+            </section>
 
-    <div class="input-section allergy-section">
-        <label for="allergy-input">アレルギー・苦手なもの (除外する食材)</label>
-        <input type="text" id="allergy-input" placeholder="例: エビ、カニ、そば、ピーナッツ">
-    </div>
+            <section id="recipe-container" aria-labelledby="recipe-heading">
+                <h3 id="recipe-heading">👩‍🍳 おすすめレシピ / 付け合わせ</h3>
+                <div id="recipe-list"></div>
+            </section>
+        </article>
 
-    <div class="input-section text-input-container">
-        <input type="text" id="text-input" placeholder="例: リンゴ、肉じゃが">
-        <button id="text-btn">  検 索  </button>
-    </div>
-
-    <canvas id="canvas"></canvas>
-
-    <div id="result-area" style="display:none;">
-        <h2 id="food-name"></h2>
-        
-        <div id="nutrient-container">
-            <h3>含まれる主な栄養素</h3>
-            <div id="nutrient-list"></div>
-        </div>
-
-        <p id="food-advice"></p>
-
-        <div id="recipe-container">
-            <h3>👩‍🍳 おすすめレシピ / 付け合わせ</h3>
-            <div id="recipe-list"></div>
-        </div>
-    </div>
+    </main>
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
