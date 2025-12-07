@@ -20,7 +20,10 @@ const previewArea = document.getElementById('preview-area');
 const previewImg = document.getElementById('preview-img');
 const previewOkBtn = document.getElementById('preview-ok-btn');
 const previewCancelBtn = document.getElementById('preview-cancel-btn');
-
+// --- モーダルの開閉処理 ---
+const modal = document.getElementById("nutrient-modal");
+const btn = document.getElementById("nutrient-help-btn");
+const closeSpan = document.getElementsByClassName("close-btn")[0];
 let currentUploadImage = null;
 
 // 1. カメラ起動 
@@ -214,3 +217,4 @@ textBtn.addEventListener('click', async () => {
 
     textInput.value = '';
 });
+
